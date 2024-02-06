@@ -18,8 +18,8 @@
           
           <h1 class="text-center my-4">Search Phone!</h1>  
 
-            <div class="d-flex justify-content-center bg-danger p-3 mb-5">
-                <input id="inputSearch" class=" bt  me-3" type="text" >
+            <div class="d-flex justify-content-center bg-secondary p-4 mb-5">
+                <input id="inputSearch" class="rounded  me-3" type="text" placeholder="Search Your Phone" >
                 <button id="searchBtn" class="btn btn-primary">Search</button>
             </div>
 
@@ -28,16 +28,53 @@
 
     <main class="container">
         
-        <section>
-                <div class=" phoneContainer row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+        <section class=""> 
+                <div class="phoneContainer row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
                     <!-- phoneContainer -->
                 </div>
 
                 <div id="NoPhoneFound" class="d-flex justify-content-center mt-5 d-none">
-                    <h3 class="text-warning">
-                            No Phone Found. Please try new Search   
+                    <h3 class="text-white bg-danger p-5 rounded">
+                            No Phone Found. Please try new Search...!!!  
                     </h3>
                 </div>
+
+
+
+                <!-- LOADER ANIMATION -->
+                  <section id="loader" class="d-flex justify-content-center gap-2 mt-5 d-none">
+                        <div class="spinner-grow text-primary" role="status">
+                          <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <div class="spinner-grow text-secondary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <div class="spinner-grow text-success" role="status">
+                          <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <div class="spinner-grow text-danger" role="status">
+                          <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <div class="spinner-grow text-warning" role="status">
+                          <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <div class="spinner-grow text-info" role="status">
+                          <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <div class="spinner-grow text-light" role="status">
+                          <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <div class="spinner-grow text-dark" role="status">
+                          <span class="visually-hidden">Loading...</span>
+                        </div>
+                  </section>
+
+                  <div id="pageMore" class="d-flex justify-content-center p-4 d-none">
+                    <div id="showAll" class="btn btn-primary">Show All</div>
+                  </div>
+
+
+
 
 
         </section>
