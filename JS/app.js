@@ -3,39 +3,38 @@ console.log("app.js is ACTIVE FILE")
 
 
 
-    const loadPhones = async(searchText) => {
+    const loadPhones = async(searchText,dataLimit) => {
 
             const url =  ` https://openapi.programming-hero.com/api/phones?search=${searchText}`
             const res = await fetch(url);
             const data = await res.json();
             // console.log(data)
-            displayPhone(data.data)
+            displayPhone(data.data, dataLimit)
     }
     // loadPhones()
 
 
     // ===========================================  API TO ARRAY
-    const displayPhone = phones => {
+    const displayPhone = (phones ,dataLimit) => {
         const phoneContainer = document.querySelector(".phoneContainer")
-        // console.log(phoneContainer)
         phoneContainer.textContent = '';
         
-        
+        // FIRST PAGE CLICK TO SHOW ALL 
         const pageMore = document.getElementById("pageMore");
-        
-        if(phones.length > 10){
+        if( dataLimit && phones.length > 10){
             phones =  phones.slice(0,10);
             pageMore.classList.remove('d-none')
         } else{
             pageMore.classList.add('d-none')
         }
-        
-        
+
+        //  Search Match
         if(phones.length === 0) {
             NoPhoneFound.classList.remove("d-none")
         }else{
             NoPhoneFound.classList.add("d-none")
         }
+        // PHONE DISPLAY 
         phones.forEach(phone => {
             console.log(phone)
             const phoneDiv = document.createElement("div")
@@ -57,12 +56,17 @@ console.log("app.js is ACTIVE FILE")
     }
     
     
-    // ===========================================  FIND FROM API
-    document.getElementById('searchBtn').addEventListener('click', function(){
+    // =========================================== MORE FIND (All product) FROM API
+    const allProduct = (dataLimit) =>{
         toggleLoader(true)
         const inputSearch = document.getElementById('inputSearch');
         const inputSearchValue = inputSearch.value;
-        loadPhones(inputSearchValue)
+        loadPhones(inputSearchValue,dataLimit)
+    }
+
+    // ===========================================  FIND FROM API
+    document.getElementById('searchBtn').addEventListener('click', function(){
+        allProduct(10)
     })
     
     
@@ -80,11 +84,8 @@ console.log("app.js is ACTIVE FILE")
     
     // ===========================================  CLICK AND GET MORE(10+) DATA 
     document.getElementById('showAll').addEventListener("click", function(){
-
-
-    console.log('kjvb')
-
-})
+        allProduct()
+    })
 
 
 
