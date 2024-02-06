@@ -21,7 +21,7 @@ console.log("app.js is ACTIVE FILE")
         // console.log(phoneContainer)
         phoneContainer.textContent = ''
 
-        phones =  phones.slice(0,2);
+        // phones =  phones.slice(0,2);
 
         if(phones.length === 0) {
             NoPhoneFound.classList.remove("d-none")
@@ -38,7 +38,7 @@ console.log("app.js is ACTIVE FILE")
                 <div class="card rounded">
                     <img src="${phone.image}" class="card-img-top p-3" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">$${phone.phone_name}</h5>
+                        <h5 class="card-title">${phone.phone_name}</h5>
                         <p class="card-text">
                             This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
                         </p>
