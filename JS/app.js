@@ -1,8 +1,5 @@
 console.log("app.js is ACTIVE FILE")
 
-
-
-
     const loadPhones = async(searchText,dataLimit) => {
 
             const url =  ` https://openapi.programming-hero.com/api/phones?search=${searchText}`
@@ -11,8 +8,7 @@ console.log("app.js is ACTIVE FILE")
             // console.log(data)
             displayPhone(data.data, dataLimit)
     }
-    // loadPhones()
-
+    // loadPhones('apple')
 
     // ===========================================  API TO ARRAY
     const displayPhone = (phones ,dataLimit) => {
@@ -47,7 +43,7 @@ console.log("app.js is ACTIVE FILE")
                     <p class="card-text">
                         This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
                     </p>
-                    <button onclick="loadPhoneDetailes('${phone.slug}')" type="button" class="btn btn-info w-100">Info</button>
+                    <button onclick="loadPhoneDetailes('${phone.slug}')" type="button" class="btn btn-info w-100" data-bs-toggle="modal" data-bs-target="#phoneDetailModal">Info</button>
                 </div>
             </div>
             `;
@@ -93,21 +89,43 @@ console.log("app.js is ACTIVE FILE")
     document.getElementById('showAll').addEventListener("click", function(){
         allProduct()
     })
-
-
-
-
+    
+    
+// =========================================
+                                    //---------------- FETCHING NEW API 
+// =========================================
+    
+    // =========================================== LOAD API FOR PHONE MODAL BY SLUG OBJ
     const loadPhoneDetailes = async id => {
-
         const url = `https://openapi.programming-hero.com/api/phone/${id}`;
         const res = await fetch(url)
         const data = await res.json()
-        console.log(data.data   )
+        displayPhoneDetailes(data.data   )
     }
-
-
-
-
+    
+    
+    // =========================================== PHONE DETAILS ON MODAL 
+    const displayPhoneDetailes = detail => {
+        console.log(detail)
+        const modalTitle = document.getElementById('phoneDetailModalLabel')
+        modalTitle.innerText = detail.name;
+        const onModal = document.getElementById("onModal");
+        onModal.innerHTML = ` 
+                <h3>Brand : ${detail.brand}</h3>
+                <ul> <li> Relese Date : ${detail.releaseDate ? detail.releaseDate : 'Not Found'} </li> </ul> 
+                <ul> <li> Display Size : ${detail.mainFeatures.displaySize}  </li> </ul> 
+                <ul> <li> Chipset : ${detail.mainFeatures.chipSet}  </li> </ul> 
+                <ul> <li> Storage : ${detail.mainFeatures.storage}  </li> </ul> 
+                <ul> <li> Memory : ${detail.mainFeatures.memory}  </li> </ul> 
+                <ul> <li> Sensor : ${detail.mainFeatures.sensors} </li> </ul> 
+                <ul> <li> WALN : ${detail.others.WLAN} </li> </ul> 
+                <ul> <li> Bluetooth :${detail.others.Bluetooth} </li> </ul> 
+                <ul> <li> GPS : ${detail.others.GPS} </li> </ul> 
+                <ul> <li> NFC : ${detail.others.NFC} </li> </ul> 
+                <ul> <li> Radio : ${detail.others.Radio} </li> </ul> 
+                <ul> <li> USB : ${detail.others.USB} </li> </ul>         
+        `
+    }
 
 
 
